@@ -50,80 +50,80 @@
     headsep=0.25\topbottompagemargin, % Header separation
     footskip=0.5\topbottompagemargin, % Header separation
 }
-    
+
 %---------------------------------------------------------------------------------------
 % Typography
 %---------------------------------------------------------------------------------------
 \RequirePackage[english]{babel} % Set language and load hyphenation patterns for American English
 \RequirePackage{csquotes} % Recommended to load when using babel.
 \RequirePackage[babel=true, final=true]{microtype} % Microtypographical enhancements which can prevent overfull boxes
-    %-----------------------------------------------------------------------------------
-    % Custom Fonts
-    %-----------------------------------------------------------------------------------
-    \RequirePackage{fontspec}
-    \setmainfont{SF-Pro-Text}[ 
-        Path = ./assets/fonts/sf-pro-text/,
-        Extension = .otf,
-        FontFace={xxl}{n}{*-UltraLight},
-        FontFace={xxl}{it}{*-UltraLightItalic},
-        FontFace={xl}{n}{*-Thin},
-        FontFace={xl}{it}{*-ThinItalic},
-        FontFace={l}{n}{*-Light},
-        FontFace={l}{it}{*-LightItalic},
-        UprightFont = *-Regular,
-        ItalicFont = *-RegularItalic,
-        FontFace={m}{n}{*-Medium},
-        FontFace={m}{it}{*-MediumItalic},
-        FontFace={mb}{n}{*-Semibold},
-        FontFace={mb}{it}{*-SemiboldItalic},
-        BoldFont = *-Bold,
-        BoldItalicFont = *-BoldItalic,
-        FontFace={xk}{n}{*-Heavy},
-        FontFace={xk}{it}{*-HeavyItalic},
-        FontFace={xxk}{n}{*-Black},
-        FontFace={xxk}{it}{*-BlackItalic}%
-    ]
-    \setsansfont{SF-Pro-Display}[ 
-        Path = ./assets/fonts/sf-pro-display/,
-        Extension = .otf,
-        FontFace={xxl}{n}{*-UltraLight},
-        FontFace={xxl}{it}{*-UltraLightItalic},
-        FontFace={xl}{n}{*-Thin},
-        FontFace={xl}{it}{*-ThinItalic},
-        FontFace={l}{n}{*-Light},
-        FontFace={l}{it}{*-LightItalic},
-        UprightFont = *-Regular,
-        ItalicFont = *-RegularItalic,
-        FontFace={m}{n}{*-Medium},
-        FontFace={m}{it}{*-MediumItalic},
-        FontFace={mb}{n}{*-Semibold},
-        FontFace={mb}{it}{*-SemiboldItalic},
-        BoldFont = *-Bold,
-        BoldItalicFont = *-BoldItalic,
-        FontFace={xk}{n}{*-Heavy},
-        FontFace={xk}{it}{*-HeavyItalic},
-        FontFace={xxk}{n}{*-Black},
-        FontFace={xxk}{it}{*-BlackItalic}%
-    ]
-    %-----------------------------------------------------------------------------------
-    % Main Text
-    %-----------------------------------------------------------------------------------
-    \newlength{\maintextfontsize}
-    \setlength{\maintextfontsize}{26.00pt}
-    \newlength{\maintextlineheight}
-    \setlength{\maintextlineheight}{1.47059\maintextfontsize}
-    \setlength\parindent{\paragraphmargin} 	% Set paragraph indentation length
-    \newcommand\maintextfont{%
-        \fontsize{\maintextfontsize}{\maintextlineheight}\rmfamily\selectfont%
-    }
+%-----------------------------------------------------------------------------------
+% Custom Fonts
+%-----------------------------------------------------------------------------------
+\RequirePackage{fontspec}
+\setmainfont{SF-Pro-Text}[
+    Path = ./assets/fonts/sf-pro-text/,
+    Extension = .otf,
+    FontFace={xxl}{n}{*-UltraLight},
+    FontFace={xxl}{it}{*-UltraLightItalic},
+    FontFace={xl}{n}{*-Thin},
+    FontFace={xl}{it}{*-ThinItalic},
+    FontFace={l}{n}{*-Light},
+    FontFace={l}{it}{*-LightItalic},
+    UprightFont = *-Regular,
+    ItalicFont = *-RegularItalic,
+    FontFace={m}{n}{*-Medium},
+    FontFace={m}{it}{*-MediumItalic},
+    FontFace={mb}{n}{*-Semibold},
+    FontFace={mb}{it}{*-SemiboldItalic},
+    BoldFont = *-Bold,
+    BoldItalicFont = *-BoldItalic,
+    FontFace={xk}{n}{*-Heavy},
+    FontFace={xk}{it}{*-HeavyItalic},
+    FontFace={xxk}{n}{*-Black},
+    FontFace={xxk}{it}{*-BlackItalic}%
+]
+\setsansfont{SF-Pro-Display}[
+    Path = ./assets/fonts/sf-pro-display/,
+    Extension = .otf,
+    FontFace={xxl}{n}{*-UltraLight},
+    FontFace={xxl}{it}{*-UltraLightItalic},
+    FontFace={xl}{n}{*-Thin},
+    FontFace={xl}{it}{*-ThinItalic},
+    FontFace={l}{n}{*-Light},
+    FontFace={l}{it}{*-LightItalic},
+    UprightFont = *-Regular,
+    ItalicFont = *-RegularItalic,
+    FontFace={m}{n}{*-Medium},
+    FontFace={m}{it}{*-MediumItalic},
+    FontFace={mb}{n}{*-Semibold},
+    FontFace={mb}{it}{*-SemiboldItalic},
+    BoldFont = *-Bold,
+    BoldItalicFont = *-BoldItalic,
+    FontFace={xk}{n}{*-Heavy},
+    FontFace={xk}{it}{*-HeavyItalic},
+    FontFace={xxk}{n}{*-Black},
+    FontFace={xxk}{it}{*-BlackItalic}%
+]
+%-----------------------------------------------------------------------------------
+% Main Text
+%-----------------------------------------------------------------------------------
+\newlength{\maintextfontsize}
+\setlength{\maintextfontsize}{26.00pt}
+\newlength{\maintextlineheight}
+\setlength{\maintextlineheight}{1.47059\maintextfontsize}
+\setlength\parindent{\paragraphmargin} 	% Set paragraph indentation length
+\newcommand\maintextfont{%
+    \fontsize{\maintextfontsize}{\maintextlineheight}\rmfamily\selectfont%
+}
 
 %---------------------------------------------------------------------------------------
 % Page Header
 %---------------------------------------------------------------------------------------
 \makeatletter
-    \newcommand{\makepageheader}[1]{%
-        \def\@projecttitle{#1}
-    }%
+\newcommand{\makepageheader}[1]{%
+    \def\@projecttitle{#1}
+}%
 \makeatother
 
 

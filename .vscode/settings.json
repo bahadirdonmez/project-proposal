@@ -9,14 +9,40 @@
         "editor.defaultFormatter": "DavidAnson.vscode-markdownlint",
     },
     "editor.codeActionsOnSave": {
-        "source.fixAll.markdownlint": true // Automatically format when saving
+        "source.fixAll.markdownlint": true, // Automatically format when saving
     },
     // Rules for Latex workshop
+    "latex-workshop.latex.outDir": ".aux",
+    "latex-workshop.latex.tools": [
+        {
+            "name": "xelatexmk",
+            "command": "latexmk",
+            "args": [
+                "-synctex=1",
+                "-interaction=nonstopmode",
+                "-file-line-error",
+                "-xelatex",
+                "-outdir=%OUTDIR%",
+                "%DOC%"
+            ],
+            "env": {}
+        },
+        {
+            "name": "pdf",
+            "command": "cp",
+            "args": [
+                "%OUTDIR%/%DOCFILE%.pdf",
+                "%DIR%/"
+            ],
+            "env": {}
+        },
+    ],
     "latex-workshop.latex.recipes": [
         {
             "name": "latexmk (xelatex)",
             "tools": [
-                "xelatexmk"
+                "xelatexmk",
+                "pdf",
             ]
         },
     ],
