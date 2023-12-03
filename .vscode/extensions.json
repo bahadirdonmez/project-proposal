@@ -1,0 +1,9 @@
+{
+    // List of recommended extensions for this project
+    "recommendations": [
+        "James-Yu.latex-workshop", // Core features for LaTeX typesetting
+        "DavidAnson.vscode-markdownlint", // Lint and format markdown files
+    ],
+    // List of extensions that are not necessary for this project
+    "unwantedRecommendations": []
+}

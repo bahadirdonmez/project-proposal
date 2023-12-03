@@ -1,0 +1,47 @@
+{
+    // Global settings
+    "editor.formatOnSave": true,
+    "editor.rulers": [
+        88 // Set max line length to 88, compatible with Black formatting
+    ],
+    // Markdown linting and formatting configuration
+    "[markdown]": {
+        "editor.defaultFormatter": "DavidAnson.vscode-markdownlint",
+    },
+    "editor.codeActionsOnSave": {
+        "source.fixAll.markdownlint": true // Automatically format when saving
+    },
+    // Rules for Latex workshop
+    "latex-workshop.latex.recipes": [
+        {
+            "name": "latexmk (xelatex)",
+            "tools": [
+                "xelatexmk"
+            ]
+        },
+    ],
+    // Rules for markdown linting
+    "markdownlint.config": {
+        "default": true, // Enable the default rules
+        "MD004": { // Set the style for unordered list items to use dashes (-)
+            "style": "dash"
+        },
+        "MD013": {
+            "strict": true,
+            "line_length": 88, // Set line length to 88
+            "code_blocks": false, // Exclude code blocks from line length checking
+        },
+        "MD014": false, // Can use dollar signs before commands without showing output
+        "MD024": { // Multiple headings with the same content
+            "allow_different_nesting": true, // Allowed for non-sibling headings (common in changelogs):
+        },
+        "MD033": {
+            "allowed_elements": [
+                "kbd" // Allow the "kbd" element in inline HTML
+            ]
+        },
+        "MD048": {
+            "style": "backtick", // Set the style for code fences to use backticks (`)
+        },
+    },
+}
