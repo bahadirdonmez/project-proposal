@@ -1,6 +1,28 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% Scientific Report and Thesis Template by Bahadir Dönmez
+% Class Definitions File
+% v3.0 (17/10/2022)
+%
+% Author:
+% Bahadir Dönmez (bhdr.donmez@gmail.com) 
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%---------------------------------------------------------------------------
+% Identification
+%---------------------------------------------------------------------------
+% The class identifies itself and the LaTeX version needed
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesClass{thesisbahadir}[2022/10/17 Scientific Report and Thesis Template by Bahadir Dönmez]
+
 %---------------------------------------------------------------------------
 % Preliminary declarations
 %---------------------------------------------------------------------------
+% This part handles the options passed to the class
+\DeclareOption{twocolumn}{\OptionNotUsed} % twocolumn option should not be used. It will be ignored and have no effect.
+\DeclareOption*{\PassOptionsToClass{\CurrentOption}{book}} % All unknown options will be passed to the book document class.
+\ProcessOptions\relax % Execute the code for each option
 % Specify the book class as the document class and pass the following options:
 %   - Set the font size for the document to 12 points.
 %   - Pass onecolumn option to typeset in a single column layout
@@ -9,6 +31,31 @@
 %   - Pass openright option to start chapters on a right-hand page.
 %   - Pass final option to produce final form.
 \LoadClass[12pt, onecolumn, twoside, titlepage, openright, final]{book}
+
+%---------------------------------------------------------------------------
+% Geometry
+%---------------------------------------------------------------------------
+% Page margins and indentations
+\newlength{\generalpagemargin}
+\setlength{\generalpagemargin}{3cm}
+\newlength{\topbottompagemargin}
+\setlength{\topbottompagemargin}{4cm}
+\newlength{\paragraphmargin}
+\setlength{\paragraphmargin}{1cm}
+% Define stretching settings
+\newcommand\figureboxstretchtopbottom{\vskip 0pt plus 0.1325\paragraphmargin}
+%\RequirePackage[showframe]{geometry} % Required for adjusting page dimensions and margins
+\RequirePackage{geometry} % Required for adjusting page dimensions and margins
+\geometry{
+    paper=a4paper, % Paper size, change to letterpaper for US letter size
+    top=\topbottompagemargin, % Top margin
+    bottom=\topbottompagemargin, % Bottom margin
+    left=\generalpagemargin, % Left margin
+    right=\generalpagemargin, % Right margin
+    headheight=0.25\topbottompagemargin, % Header height
+    headsep=0.25\topbottompagemargin, % Header separation
+    footskip=0.5\topbottompagemargin, % Header separation
+}
 
 %---------------------------------------------------------------------------
 % Graphics and Tables
@@ -49,6 +96,7 @@
 \definecolor{color4}{HTML}{C52E51} %RGB: 197, 46, 81
 \definecolor{color5}{HTML}{248232} %RGB: 36, 130, 50
 \definecolor{color6}{HTML}{ECF7FD} %RGB: 236, 247, 253
+\definecolor{color7}{HTML}{F9FBFE} %RGB: 249, 251, 254
 
 %---------------------------------------------------------------------------
 % Math
@@ -69,10 +117,59 @@
 %---------------------------------------------------------------------------
 % Typography
 %---------------------------------------------------------------------------
+\RequirePackage[english]{babel} % Set language and load hyphenation patterns for American English
+\RequirePackage{csquotes} % Recommended to load when using babel.
+\RequirePackage[babel=true, final=true]{microtype} % Microtypographical enhancements which can prevent overfull boxes
 \RequirePackage{indentfirst} % Indent first paragraph after section header
 \RequirePackage{textcomp} % Offers copyright symbols to use with image courtesy
 \RequirePackage{enumitem} % Control the layout of list environments: enumerate and itemize
 \RequirePackage{afterpage} % Provides the \afterpage command to execute a code after the current page 
+% Custom Fonts
+\RequirePackage{fontspec}
+\setmainfont{SF-Pro-Text}[
+    Path = ./Fonts/,
+    Extension = .otf,
+    FontFace={xxl}{n}{*-UltraLight},
+    FontFace={xxl}{it}{*-UltraLightItalic},
+    FontFace={xl}{n}{*-Thin},
+    FontFace={xl}{it}{*-ThinItalic},
+    FontFace={l}{n}{*-Light},
+    FontFace={l}{it}{*-LightItalic},
+    UprightFont = *-Regular,
+    ItalicFont = *-RegularItalic,
+    FontFace={m}{n}{*-Medium},
+    FontFace={m}{it}{*-MediumItalic},
+    FontFace={mb}{n}{*-Semibold},
+    FontFace={mb}{it}{*-SemiboldItalic},
+    BoldFont = *-Bold,
+    BoldItalicFont = *-BoldItalic,
+    FontFace={xk}{n}{*-Heavy},
+    FontFace={xk}{it}{*-HeavyItalic},
+    FontFace={xxk}{n}{*-Black},
+    FontFace={xxk}{it}{*-BlackItalic}%
+]
+\setsansfont{SF-Pro-Display}[
+    Path = ./Fonts/,
+    Extension = .otf,
+    FontFace={xxl}{n}{*-UltraLight},
+    FontFace={xxl}{it}{*-UltraLightItalic},
+    FontFace={xl}{n}{*-Thin},
+    FontFace={xl}{it}{*-ThinItalic},
+    FontFace={l}{n}{*-Light},
+    FontFace={l}{it}{*-LightItalic},
+    UprightFont = *-Regular,
+    ItalicFont = *-RegularItalic,
+    FontFace={m}{n}{*-Medium},
+    FontFace={m}{it}{*-MediumItalic},
+    FontFace={mb}{n}{*-Semibold},
+    FontFace={mb}{it}{*-SemiboldItalic},
+    BoldFont = *-Bold,
+    BoldItalicFont = *-BoldItalic,
+    FontFace={xk}{n}{*-Heavy},
+    FontFace={xk}{it}{*-HeavyItalic},
+    FontFace={xxk}{n}{*-Black},
+    FontFace={xxk}{it}{*-BlackItalic}%
+]
 
 %---------------------------------------------------------------------------
 % Common Font Styles
@@ -120,6 +217,17 @@
 \setlength{\subsubsectiontitlelineheight}{1.16667\subsubsectiontitlefontsize}
 \newcommand\subsubsectiontitlefont{%
     \fontsize{\subsubsectiontitlefontsize}{\subsubsectiontitlelineheight}\fontseries{b}\sffamily\selectfont\raggedright%
+}
+%-----------------------------------------------------------------------
+% Main Text
+%-----------------------------------------------------------------------
+\newlength{\maintextfontsize}
+\setlength{\maintextfontsize}{12.00pt}
+\newlength{\maintextlineheight}
+\setlength{\maintextlineheight}{1.47059\maintextfontsize}
+\setlength\parindent{\paragraphmargin} 	% Set paragraph indentation length
+\newcommand\maintextfont{%
+    \fontsize{\maintextfontsize}{\maintextlineheight}\fontseries{r}\rmfamily\selectfont%
 }
 %-----------------------------------------------------------------------
 % Footer and Caption Text
