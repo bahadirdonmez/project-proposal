@@ -39,17 +39,15 @@
 %=====================================================================================%
 % Geometry
 %=====================================================================================%
-%\RequirePackage[showframe]{geometry} % Required for adjusting page dimensions and margins
-\RequirePackage{geometry} % Required for adjusting page dimensions and margins
+\RequirePackage{geometry} % For adjusting page dimensions and margins
+%\RequirePackage[showframe]{geometry} % For adjusting page dimensions and margins
 % Page margins and indentations
 \newlength{\generalpagemargin}
 \setlength{\generalpagemargin}{1.5cm}
-\newlength{\topbottompagemargin}
-\setlength{\topbottompagemargin}{4.5cm}
 \newlength{\contentwidth}
 \setlength{\contentwidth}{\dimexpr\paperwidth-2\generalpagemargin\relax}
 \geometry{
-    top=\topbottompagemargin, % Top margin
+    top=\generalpagemargin, % Top margin
     bottom=\generalpagemargin, % Bottom margin
     left=\generalpagemargin, % Left margin
     right=\generalpagemargin, % Right margin
@@ -62,18 +60,20 @@
 %=====================================================================================%
 \RequirePackage{tikz}  % Creating graphic elements
 \usetikzlibrary{calc} % For coordinate calculation
-\usetikzlibrary{shapes.geometric} % For drawing geometric shapes
 \RequirePackage[many]{tcolorbox} % Required for making colored boxes
-
+\usetikzlibrary{shapes.geometric} % For drawing geometric shapes
+\RequirePackage{array} % Defining new column types for tables
+\RequirePackage{mdframed} % Styling of environments
+\RequirePackage{changepage} % For adjustwidth command to shift tables to right or left
 %=====================================================================================%
 % Colors
 %=====================================================================================%
 \RequirePackage{xcolor} % Color extensions for LaTeX
-\definecolor{backgroundcolor1}{HTML}{F9FBFE}
+\definecolor{backgroundcolor1}{HTML}{FAFCFF}
 \definecolor{backgroundcolor2}{HTML}{0C2C46}
 \definecolor{maintextcolor}{HTML}{061623}
 \definecolor{titlecolor}{HTML}{0C2C46}
-\definecolor{lighttextcolor}{HTML}{F9FBFE}
+\definecolor{lighttextcolor}{HTML}{FAFCFF}
 \definecolor{palettecolor1}{HTML}{52B3F4}
 \definecolor{palettecolor2}{HTML}{C52E51}
 
@@ -85,6 +85,7 @@
 \RequirePackage[babel=true, final=true]{microtype} % Microtypographical enhancements
 \RequirePackage{enumitem} % Control the layout of list environments: enumerate and itemize
 \RequirePackage{fontawesome} % Fontawesome symbols
+
 %=========================================%
 % Custom Fonts
 %=========================================%
@@ -161,7 +162,7 @@
 % Section Font
 %=========================================%
 \newlength{\sectionfontsize}
-\setlength{\sectionfontsize}{12.00pt}
+\setlength{\sectionfontsize}{11.00pt}
 \newlength{\sectionlineheight}
 \setlength{\sectionlineheight}{1.20\sectionfontsize}
 \newcommand\sectionfont{%
@@ -190,6 +191,7 @@
 %=====================================================================================%
 \makeatletter
 \newcommand{\makepage}{
+    \pagestyle{empty}
     \pagecolor{backgroundcolor1}
 }
 \makeatother
@@ -259,6 +261,7 @@
             \end{tikzpicture}
         };
     \end{tikzpicture}
+    \vspace{2\generalpagemargin}
 }
 \makeatother
 
@@ -266,7 +269,7 @@
 % Environments
 %=====================================================================================%
 %=========================================%
-% Section with Optional Image
+% Section with Single Column and Image
 %=========================================%
 % Define a new length for minipage width
 \newlength{\minipagewidth}
@@ -277,16 +280,16 @@
 \tikzstyle{sectiontitle} =[
 trapezium, draw=backgroundcolor2, trapezium left angle=90, trapezium right angle=240,
 fill=backgroundcolor2, text=lighttextcolor, right=0cm, inner sep=\sectionxpadding,
-inner ysep=\sectionypadding, text depth=0cm, yshift=0.35\generalpagemargin
+inner ysep=\sectionypadding, text depth=0cm, yshift=0.40\generalpagemargin
 ]
-\tikzstyle{sectionlinenode1} = [yshift=0.13\generalpagemargin]
+\tikzstyle{sectionlinenode1} = [yshift=0.18\generalpagemargin]
 \tikzstyle{sectionlinenode2} = [
-yshift=0.13\generalpagemargin,xshift=\dimexpr\paperwidth-2\generalpagemargin-2pt\relax
+yshift=0.18\generalpagemargin,xshift=\dimexpr\paperwidth-2\generalpagemargin-2pt\relax
 ]
 \tikzstyle{sectionline} = [line width=\sectionlinewidth, color=backgroundcolor2]
 \tikzstyle{sectiontext} = [rectangle, inner sep=0cm]
 \tikzstyle{sectionimage} =[
-right=0.25\generalpagemargin, inner sep=0cm, inner ysep=0cm, text depth=0cm,
+right=0.34\generalpagemargin, inner sep=0cm, inner ysep=0cm, text depth=0cm,
 ]
 % Define section environment with optional image argument
 \NewEnviron{section}[2][]{
@@ -321,7 +324,7 @@ right=0.25\generalpagemargin, inner sep=0cm, inner ysep=0cm, text depth=0cm,
 % Sections with Two Columns
 %=========================================%
 \tikzstyle{sectionlinecolumnnode2} = [
-yshift=0.13\generalpagemargin,xshift=\dimexpr0.5\paperwidth-1.25\generalpagemargin-1pt\relax
+yshift=0.18\generalpagemargin,xshift=\dimexpr0.5\paperwidth-1.25\generalpagemargin-1pt\relax
 ]
 % Define a new environment for sections with two titles and two different texts
 \NewEnviron{sectiontwocolumns}[4]{
@@ -352,6 +355,70 @@ yshift=0.13\generalpagemargin,xshift=\dimexpr0.5\paperwidth-1.25\generalpagemarg
     \end{tikzpicture}
     \vspace{0.25\generalpagemargin}
 }
+%=========================================%
+% Section with Timeline
+%=========================================%
+% Define section environment with timeline
+\NewEnviron{sectiontimeline}[1]{
+    \vspace{-0.25\generalpagemargin}
+    \begin{mdframed}[
+            backgroundcolor=backgroundcolor1, skipabove=0pt,
+            skipbelow=0.25\generalpagemargin, innerleftmargin=0pt, innerrightmargin=0pt,
+            innertopmargin=0pt, innerbottommargin=0pt, leftmargin=0pt, rightmargin=0pt,
+            hidealllines=true
+        ]
+        \begin{tikzpicture}
+            % Title and line
+            \node[sectiontitle] at (0,0) {\strut\sectionfont#1};
+            \draw[sectionline] (0,0.18\generalpagemargin) -- (\dimexpr\paperwidth-2\generalpagemargin-2pt\relax,0.18\generalpagemargin);
+        \end{tikzpicture}
+        \BODY
+    \end{mdframed}
+    \vspace{0.25\generalpagemargin}
+}
+% Use to align an element of tabular table
+\newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\newcolumntype{J}[1]{>{\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\newcolumntype{R}[1]{>{\raggedleft\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+% Command to add an entry to the timeline
+\newcommand\tikzmark[1]{\tikz[remember picture,overlay] \coordinate (#1);}
+\newcommand{\timelineentry}[3]{
+    \vspace{-0.20\generalpagemargin}
+    \setlength\tabcolsep{0pt}
+    \setlength{\extrarowheight}{0pt}
+    \begin{adjustwidth}{0cm}{}
+        \begin{tabular*}{\textwidth}{@{\extracolsep{\fill}}L{2.1cm} C{1cm} J{\dimexpr\textwidth -3.1cm\relax}}
+            & \tikzmark{a} & \\
+            \tikzmark{c} & \tikzmark{d} & #3 \\
+            & \tikzmark{b} & \\
+        \end{tabular*}
+    \end{adjustwidth}
+    \vspace{-0.30\generalpagemargin}
+    \tikz[remember picture,overlay]
+    {
+        \draw[draw=backgroundcolor2,line width=2pt]([yshift=-0.5ex]a) -- ([yshift=1.8ex]b) {};
+        \draw[draw=backgroundcolor2,line width=2pt]([yshift=0.6ex]d) node[circle,draw=backgroundcolor2, fill=white, inner sep=0pt,minimum size=5pt] {};
+        \path([yshift=0.6ex]c) node[below= 0.2 cm,right=0cm] {#1};
+        \path([yshift=0.6ex]c) node[above= 0.2 cm,right=0cm] {\textbf{#2}};
+    }
+}
+\newcommand{\timelineentryspacer}{
+    \vspace{-0.35\generalpagemargin}
+    \setlength\tabcolsep{0pt}
+    \setlength{\extrarowheight}{0pt}
+    \begin{adjustwidth}{0cm}{}
+        \begin{tabular*}{\textwidth}{@{\extracolsep{\fill}}L{2.1cm} C{1cm} L{\dimexpr\textwidth -3.1cm\relax}}
+            & \tikzmark{a} & \\
+            & \tikzmark{b} & \\
+        \end{tabular*}
+    \end{adjustwidth}
+    \vspace{-0.50\generalpagemargin}
+    \tikz[remember picture,overlay]
+    {
+        \draw[draw=backgroundcolor2,line width=2pt]([yshift=0.6ex]a) -- ([yshift=0.7ex]b) {};
+    }
+}
 
 %=====================================================================================%
 % List Style
@@ -361,17 +428,13 @@ yshift=0.13\generalpagemargin,xshift=\dimexpr0.5\paperwidth-1.25\generalpagemarg
     leftmargin=*,labelindent=0.25\generalpagemargin,
     labelsep=0.125\generalpagemargin, topsep=1mm
 }
-% First level enumerate
-\setlist[enumerate,1]{leftmargin=*,labelindent=0.25\generalpagemargin,labelsep=0.125\generalpagemargin}
 % Custom bullet points
-\renewcommand\labelitemi{%
-    \begin{tikzpicture}%
-        \node[left, inner xsep=0pt] at (0, 0.5\sectionlinewidth) (A) {\hspace*{0pt}};%
-        \pgfkeysgetvalue{/pgf/inner xsep}{\myAxsep}%
-        \node[right, inner xsep=0pt] at (0.25\generalpagemargin, 0.5\sectionlinewidth) (B) {\hspace*{0pt}};%
-        \pgfkeysgetvalue{/pgf/inner xsep}{\myBxsep}%
-        \draw [line width=\sectionlinewidth] (A)--(B);%
-        \pgfresetboundingbox%
-        \useasboundingbox ($(A.south west)+(\myAxsep,-3pt)$) rectangle ($(B.north east)-(\myBxsep,0)$);%
-    \end{tikzpicture}%
+\renewcommand\labelitemi{
+    \begin{tikzpicture}[baseline=-0.6ex] % Align the bullet with the text baseline
+        % Define nodes
+        \node[inner xsep=0pt] (A) at (0, 0) {};
+        \node[inner xsep=0pt] (B) at (0.25\generalpagemargin, 0) {};
+        % Draw line
+        \draw [line width=\sectionlinewidth] (A.center)--(B.center);
+    \end{tikzpicture}
 }

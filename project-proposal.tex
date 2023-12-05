@@ -35,8 +35,7 @@
 % Proposal
 %=====================================================================================%
 \begin{section}{Proposal}
- We propose a semester project focused on improving and extending the
- capabilities of the BLOOD device. The main goals and expected outcomes are:
+ We propose a semester project with the following main goals and expected outcomes:
 
  \begin{itemize}
      \item {Continued development of BLOOD to ensure its readiness for regular lab use.}
@@ -44,7 +43,7 @@
      \item {Resolving existing issues to improve reliability and optimize performance.}
  \end{itemize}
 
- Achieving these objectives will contribute significantly to our group's research and
+ The project will contribute significantly to our group's research and
  give you a great learning experience.
 \end{section}
 
@@ -54,32 +53,116 @@
 \begin{sectiontwocolumns}
     {Recommended Skills}
     {
-        These skills are recommended for the project, but they are not strict
-        requirements:
+        Desirable (but not mandatory) skills are:
 
         \begin{itemize}
-            \item {Proficiency in \textbf{C/C++} and \textbf{Python} for software development.}
-            \item {Some experience with hardware design, \textbf{FPGA} development, and embedded systems.}
+            \item {Proficiency in \textbf{C/C++} and \textbf{Python} for software
+                  development.}
+            \item {Some experience with hardware design, \textbf{FPGA} development, and
+                  embedded systems.}
             \item {Familiarity with version control systems, particularly \textbf{git}.}
-            \item {Understanding of \textbf{Linux} operating systems.}
-            \item {Basic knowledge of digital and analog circuits.}
-            \item {Interest in laser technology and its applications in quantum experiments.}
+            \item {Basic understanding of \textbf{Linux} operating systems.}
         \end{itemize}
     }
     {Learning Opportunities}
     {
-        The project offers many chances to improve your skills in areas like:
+        Self-development opportunities include:
 
         \begin{itemize}
-            \item {Improving your programming skills, especially in \textbf{C/C++} and \textbf{Python}.}
-            \item {Gaining a deeper understanding of hardware design, including \textbf{FPGA} development.}
-            \item {Getting hands-on experience with version control systems, mainly  \textbf{git}, in team settings.}
-            \item {Getting familiar with \textbf{Linux} oeprating systems, including command line usage.}
+            \item {Improving your programming and hardware design skills.}
+            \item {Gaining hands-on experience in collaborative, team-based
+                  software development.}
             \item {Learning how to find and fix bugs, and make systems work better.}
-            \item {Exploring how lasers are used in the quantum experiments.}
+            \item {Getting familiar with Linux operating systems, including
+                  command line usage.}
         \end{itemize}
     }
 \end{sectiontwocolumns}
+
+%=====================================================================================%
+% Timeline
+%=====================================================================================%
+\begin{sectiontimeline}{Timeline}
+    The project, estimated at 300-400 hours, aims for completion in one semester,
+    starting February 2024:
+
+    \timelineentry
+    {Weeks 1-2}
+    {Kick-off}
+    {
+        Initial meeting. Get familiar with BLOOD and Python-based DEVIL Client software
+        (GUI and API). Use the example Jupyter Notebooks as tutorial. Fix minor bugs
+        and resolve issues on GitLab. Document changes and release the updated version
+        of DEVIL Client.
+    }
+
+    \timelineentryspacer
+
+    \timelineentry
+    {Week 3}
+    {Linux OS}
+    {
+        Upgrade Buildroot to latest version and implement auto-generated unique
+        hostnames for Red Pitaya. Compile and boot the new OS. Test with remote
+        access using Linux commands (ssh, systemctl). Document changes and release the
+        updated version of Red Pitaya OS.
+    }
+
+    \timelineentryspacer
+
+    \timelineentry
+    {Weeks 4-8}
+    {Server}
+    {
+        Begin development on C++-based Server code to enable second channel of BLOOD.
+        Use the server code for EVIL as example. Build the software, upload it to FPGA
+        and debug using VS Code. Document changes and release the updated version of
+        DEVIL Server.
+    }
+
+    \newpage
+
+    \timelineentry
+    {Weeks 9-12}
+    {Hardware}
+    {
+        Upgrade PyRPL FPGA project to Vivado 2023.2, resolve any timing violations.
+        Implement a configurable PID output limiter for preventing integrator wind-up.
+        Generate the bitstream, upload it to FPGA and test it. Document changes and
+        release the updated version of PyRPL FPGA bitstream.
+    }
+
+    \timelineentryspacer
+
+    \timelineentry
+    {Weeks 13-14}
+    {Finish}
+    {
+        Test the new features of BLOOD in the lab and try to lock a laser with it.
+        Prepare the final project report, detailing the development process, challenges,
+        solutions and future work. Update example Jupyter Notebooks if necessary.
+    }
+\end{sectiontimeline}
+
+%=====================================================================================%
+% Contact
+%=====================================================================================%
+\begin{section}[assets/images/tiqi.png]{Contact}
+
+ \textbf{Lab}:\newline
+ Trapped Ion Quantum Information Group\newline
+ www.tiqi.ethz.ch \newline
+
+ \textbf{Location}:\newline
+ Hönggerberg Campus, HPF (E Floor)\newline
+
+ \textbf{Supervisors}:
+ \begin{itemize}
+     \item {Bahadır Dönmez (doenmezb@phys.ethz.ch)}
+     \item {Martin Stadler (mastadle@phys.ethz.ch)}
+ \end{itemize}
+
+\end{section}
 
 \end{document}
 
