@@ -301,21 +301,18 @@ yshift=0.18\generalpagemargin,xshift=\dimexpr\paperwidth-2\generalpagemargin-2pt
 ]
 \tikzstyle{sectionline} = [line width=\sectionlinewidth, color=backgroundcolor2]
 \tikzstyle{sectiontext} = [rectangle, inner sep=0cm]
-\tikzstyle{sectionimage} =[
-right=0.34\generalpagemargin, inner sep=0cm, inner ysep=0cm, text depth=0cm,
-]
+\tikzstyle{sectionimage} =[inner sep=0.30\generalpagemargin, inner ysep=0cm, text depth=0cm]
 % Define section environment with optional image argument
-\NewEnviron{section}[2][]{
+\NewEnviron{section}[3][]{
     \phantomsection % Phantom section for hyperlink
-    \addcontentsline{toc}{section}{#2} % Add section to the table of contents
+    \addcontentsline{toc}{section}{#3} % Add section to the table of contents
     \vspace{-0.3\generalpagemargin}
-    \noindent
     \begin{tikzpicture}
         % Adjust the width of the minipage if an image is provided
         \ifx&#1&  % No image argument provided
         \setlength{\minipagewidth}{\dimexpr\paperwidth-2\generalpagemargin-2pt\relax}
         \else  % Image argument provided
-        \setlength{\minipagewidth}{0.67\dimexpr\paperwidth-2\generalpagemargin-2pt\relax}
+        \setlength{\minipagewidth}{\dimexpr\paperwidth-2.30\generalpagemargin-2pt-#2\relax}
         \fi
         % Text node
         \node [sectiontext] (box){
@@ -326,11 +323,11 @@ right=0.34\generalpagemargin, inner sep=0cm, inner ysep=0cm, text depth=0cm,
         % Image node (displayed only if image argument is provided)
         \ifx&#1&\else
         \node [sectionimage, anchor=north west] at (box.north east)  {
-            \includegraphics[width=0.30\dimexpr\paperwidth-2\generalpagemargin-2pt\relax]{#1}
+            \includegraphics[width=#2]{#1}
         };
         \fi
         % Title and line
-        \node[sectiontitle] at (box.north west) {\strut\sectionfont#2};
+        \node[sectiontitle] at (box.north west) {\strut\sectionfont#3};
         \draw[sectionline] ([sectionlinenode1]box.north west) -- ([sectionlinenode2]box.north west);
     \end{tikzpicture}
     \vspace{0.25\generalpagemargin}
@@ -346,8 +343,7 @@ yshift=0.18\generalpagemargin,xshift=\dimexpr0.5\paperwidth-1.25\generalpagemarg
     \phantomsection % Phantom section for hyperlink
     \addcontentsline{toc}{section}{#1} % Add section to the table of contents
     \addcontentsline{toc}{section}{#3} % Add section to the table of contents
-    \vspace{-0.3\generalpagemargin}
-    \noindent
+    \vspace{-0.30\generalpagemargin}
     \begin{tikzpicture}
         % Set the width for the two title minipages
         \setlength{\minipagewidth}{0.5\dimexpr\paperwidth-2.5\generalpagemargin-2pt\relax}
@@ -358,7 +354,7 @@ yshift=0.18\generalpagemargin,xshift=\dimexpr0.5\paperwidth-1.25\generalpagemarg
             \end{minipage}
         };
         % Right title and text node
-        \node [sectiontext, right=0.5\generalpagemargin] (rightbox) at (leftbox.east){
+        \node [sectiontext, right=0.5\generalpagemargin, anchor=north west] (rightbox) at (leftbox.north east){
             \begin{minipage}{\minipagewidth}
                 #4
             \end{minipage}
