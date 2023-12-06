@@ -20,15 +20,15 @@
 % Project Background
 %=====================================================================================%
 \begin{section}[assets/images/blood.png]{Background}
- In 2022, our students developed a novel digital lock box, named
- \textbf{BLOOD (Bichannel Lockbox On One Device)}. This system is planned to be the
- successor to the \textbf{EVIL} lock box, which has been in use for a
- decade. BLOOD, featuring a Red Pitaya FPGA board and a custom-designed PCB,
- maintains backward compatibility with existing EVIL setups and our DEVIL client/server
- software. A major improvement in BLOOD compared to its predecessor is the
- capability to digitally control analog gain and offset parameters. The first prototype
- of BLOOD has shown promising results, successfully stabilizing laser frequencies in
- the lab. Nonetheless, further development is necessary to fully unlock its potential.
+ In 2022, our students developed a novel digital lock box, named BLOOD (Bichannel
+ Lockbox On One Device), the successor to the decade-old EVIL. At its core, BLOOD is a
+ PID controller designed to stabilize laser frequency by 'locking' it to a set value.
+ Featuring a Red Pitaya FPGA board and a custom-designed PCB, BLOOD maintains backward
+ compatibility with existing EVIL setups and our DEVIL client/server software. A major
+ improvement in BLOOD compared to its predecessor is the capability to digitally
+ control analog gain and offset parameters. The first prototype of BLOOD has shown
+ promising results in the lab. Nonetheless, further development is necessary to fully
+ unlock its potential.
 \end{section}
 
 %=====================================================================================%
@@ -39,7 +39,7 @@
 
  \begin{itemize}
      \item {Continued development of BLOOD to ensure its readiness for regular lab use.}
-     \item {Adding support for the second channel of the device.}
+     \item {Adding software support for the second channel of the device.}
      \item {Resolving existing issues to improve reliability and optimize performance.}
  \end{itemize}
 
@@ -69,9 +69,10 @@
         Self-development opportunities include:
 
         \begin{itemize}
-            \item {Improving your programming and hardware design skills.}
             \item {Gaining hands-on experience in collaborative, team-based
                   software development.}
+            \item {Improving your hardware design skills, with a focus on PID
+                  implementation in FPGA.}
             \item {Learning how to find and fix bugs, and make systems work better.}
             \item {Getting familiar with Linux operating systems, including
                   command line usage.}
@@ -83,8 +84,7 @@
 % Timeline
 %=====================================================================================%
 \begin{sectiontimeline}{Timeline}
-    The project, estimated at 300-400 hours, aims for completion in one semester,
-    starting February 2024:
+    The project aims for completion in one semester, starting February 2024:
 
     \timelineentry
     {Weeks 1-2}
@@ -142,6 +142,13 @@
         Prepare the final project report, detailing the development process, challenges,
         solutions and future work. Update example Jupyter Notebooks if necessary.
     }
+
+    The project's duration, estimated at 300-400 hours, is subject to variation based
+    on the specific departmental requirements (Electrical Engineering, Physics, etc.).
+    This timeline presents an extensive list of tasks, serving as a best-case scenario.
+    It's understood that, given the project's scope, completing every task may not be
+    feasible, and prioritizing key components is acceptable.
+
 \end{sectiontimeline}
 
 %=====================================================================================%
@@ -151,7 +158,8 @@
 
  \textbf{Lab}:\newline
  Trapped Ion Quantum Information Group\newline
- www.tiqi.ethz.ch \newline
+ \url{www.tiqi.ethz.ch} \newline
+
 
  \textbf{Location}:\newline
  Hönggerberg Campus, HPF (E Floor)\newline

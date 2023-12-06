@@ -85,10 +85,6 @@
 \RequirePackage[babel=true, final=true]{microtype} % Microtypographical enhancements
 \RequirePackage{enumitem} % Control the layout of list environments: enumerate and itemize
 \RequirePackage{fontawesome} % Fontawesome symbols
-
-%=========================================%
-% Custom Fonts
-%=========================================%
 \RequirePackage{fontspec}
 \setmainfont{SF-Pro-Text}[
     Path = ./assets/fonts/sf-pro-text/,
@@ -134,6 +130,23 @@
     FontFace={xxk}{n}{*-Black},
     FontFace={xxk}{it}{*-BlackItalic}
 ]
+
+%---------------------------------------------------------------------------
+% Links Style
+%---------------------------------------------------------------------------
+\RequirePackage{hyperref} % Required for handling cross-referencing commands to produce hypertext links in the document.
+\hypersetup{
+    pdfstartview={FitV},    % fits the width of the page to the window
+    pdftitle={Lab Integration of Multi‑Client Digital Laser Lock Box for Trapped Ion Experiments}, % PDF title
+    pdfauthor={Bahad{\i}r Dönmez}, % Author name
+    colorlinks = true,
+    urlcolor=titlecolor
+}
+\urlstyle{same}
+
+%=====================================================================================%
+% Font Settings
+%=====================================================================================%
 %=========================================%
 % Header Font
 %=========================================%
@@ -181,7 +194,7 @@
 \setlength{\maintextfontsize}{10.00pt}
 \newlength{\maintextlineheight}
 \setlength{\maintextlineheight}{1.28\maintextfontsize}
-\setlength\parindent{\generalpagemargin} 	% Set paragraph indentation length
+\setlength\parindent{0pt} 	% Set paragraph indentation length
 \newcommand\setmaintextfont{
     \fontsize{\maintextfontsize}{\maintextlineheight}\rmfamily\selectfont
 }
@@ -293,6 +306,8 @@ right=0.34\generalpagemargin, inner sep=0cm, inner ysep=0cm, text depth=0cm,
 ]
 % Define section environment with optional image argument
 \NewEnviron{section}[2][]{
+    \phantomsection % Phantom section for hyperlink
+    \addcontentsline{toc}{section}{#2} % Add section to the table of contents
     \vspace{-0.3\generalpagemargin}
     \noindent
     \begin{tikzpicture}
@@ -328,6 +343,9 @@ yshift=0.18\generalpagemargin,xshift=\dimexpr0.5\paperwidth-1.25\generalpagemarg
 ]
 % Define a new environment for sections with two titles and two different texts
 \NewEnviron{sectiontwocolumns}[4]{
+    \phantomsection % Phantom section for hyperlink
+    \addcontentsline{toc}{section}{#1} % Add section to the table of contents
+    \addcontentsline{toc}{section}{#3} % Add section to the table of contents
     \vspace{-0.3\generalpagemargin}
     \noindent
     \begin{tikzpicture}
@@ -360,6 +378,8 @@ yshift=0.18\generalpagemargin,xshift=\dimexpr0.5\paperwidth-1.25\generalpagemarg
 %=========================================%
 % Define section environment with timeline
 \NewEnviron{sectiontimeline}[1]{
+    \phantomsection % Phantom section for hyperlink
+    \addcontentsline{toc}{section}{#1} % Add section to the table of contents
     \vspace{-0.25\generalpagemargin}
     \begin{mdframed}[
             backgroundcolor=backgroundcolor1, skipabove=0pt,
@@ -374,7 +394,7 @@ yshift=0.18\generalpagemargin,xshift=\dimexpr0.5\paperwidth-1.25\generalpagemarg
         \end{tikzpicture}
         \BODY
     \end{mdframed}
-    \vspace{0.25\generalpagemargin}
+    \vspace{0.35\generalpagemargin}
 }
 % Use to align an element of tabular table
 \newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
@@ -438,3 +458,4 @@ yshift=0.18\generalpagemargin,xshift=\dimexpr0.5\paperwidth-1.25\generalpagemarg
         \draw [line width=\sectionlinewidth] (A.center)--(B.center);
     \end{tikzpicture}
 }
+
