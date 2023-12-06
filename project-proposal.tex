@@ -100,19 +100,7 @@
     \timelineentryspacer
 
     \timelineentry
-    {Week 3}
-    {Linux OS}
-    {
-        Upgrade Buildroot to latest version and implement auto-generated unique
-        hostnames for Red Pitaya. Compile and boot the new OS. Test with remote
-        access using Linux commands (ssh, systemctl). Document changes and release the
-        updated version of Red Pitaya OS.
-    }
-
-    \timelineentryspacer
-
-    \timelineentry
-    {Weeks 4-8}
+    {Weeks 3-7}
     {Server}
     {
         Begin development on C++-based Server code to enable second channel of BLOOD.
@@ -121,16 +109,29 @@
         DEVIL Server.
     }
 
-    \newpage
+    \timelineentryspacer
 
     \timelineentry
-    {Weeks 9-12}
+    {Weeks 8-11}
     {Hardware}
     {
         Upgrade PyRPL FPGA project to Vivado 2023.2, resolve any timing violations.
-        Implement a configurable PID output limiter for preventing integrator wind-up.
-        Generate the bitstream, upload it to FPGA and test it. Document changes and
-        release the updated version of PyRPL FPGA bitstream.
+        Implement a PID output limiter for preventing integrator wind-up. Generate the
+        bitstream and test it on the FPGA. Document changes and release the updated
+        version of PyRPL FPGA bitstream.
+    }
+
+    \newpage
+
+    \timelineentry
+    {Week 12}
+    {Linux OS}
+    {
+        Update the Buildroot submodule to the latest release and integrate the new
+        versions of DEVIL Server and PyRPL FPGA packages that include your changes.
+        Implement auto-generated unique hostnames for Red Pitaya. Compile and boot the
+        new OS. Test it with remote access using Linux commands (ssh, systemctl).
+        Document changes and release the updated version of the Red Pitaya OS.
     }
 
     \timelineentryspacer
